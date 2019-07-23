@@ -22,7 +22,6 @@ import java.util.TreeMap;
 import uk.ac.leeds.ccg.andyt.data.interval.Data_IntervalLong1;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Object;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.io.ELSA_Files;
 
@@ -58,7 +57,7 @@ public class ELSA_Handler extends ELSA_Object {
     protected Object load(byte wave, File f) {
         String m = "load " + getString0(wave, f);
         env.logStartTag(m);
-        Object r = Generic_IO.readObject(f);
+        Object r = env.ge.io.readObject(f);
         env.logEndTag(m);
         return r;
     }
@@ -71,7 +70,7 @@ public class ELSA_Handler extends ELSA_Object {
 
     /**
      * A simple wrapper for
-     * {@link Generic_IO#writeObject(java.lang.Object, java.io.File)}
+     * {@link env.ge.io#writeObject(java.lang.Object, java.io.File)}
      *
      * @param wave The wave to be cached.
      * @param f The File to cache to.
@@ -80,7 +79,7 @@ public class ELSA_Handler extends ELSA_Object {
     protected void cache(byte wave, File f, Object o) {
         String m = "cache " + getString0(wave, f);
         env.logStartTag(m);
-        Generic_IO.writeObject(o, f);
+        env.ge.io.writeObject(o, f);
         env.logEndTag(m);
     }
 
@@ -93,7 +92,7 @@ public class ELSA_Handler extends ELSA_Object {
     public File getSubsetCacheFile(byte wave, String type) {
         return new File(files.getGeneratedELSASubsetsDir(),
                 ELSA_Strings.s_W + wave + ELSA_Strings.symbol_underscore
-                + type + ELSA_Files.DOT_DAT);
+                + type + env.files.DOT_DAT);
     }
 
     /**
@@ -105,7 +104,7 @@ public class ELSA_Handler extends ELSA_Object {
     public File getSubsetCacheFile2(byte wave, String type) {
         return new File(files.getGeneratedELSASubsetsDir(),
                 ELSA_Strings.s_W + wave + ELSA_Strings.symbol_underscore
-                + type + "2" + ELSA_Files.DOT_DAT);
+                + type + "2" + env.files.DOT_DAT);
     }
 
     /**
@@ -150,12 +149,12 @@ public class ELSA_Handler extends ELSA_Object {
     }
 
     public TreeMap<Short, HashSet<Short>> loadSubsetLookupTo(byte wave) {
-        return (TreeMap<Short, HashSet<Short>>) Generic_IO.readObject(
+        return (TreeMap<Short, HashSet<Short>>) env.ge.io.readObject(
                 getSubsetLookupToFile(wave));
     }
 
     public TreeMap<Short, Short> loadSubsetLookupFrom(byte wave) {
-        return (TreeMap<Short, Short>) Generic_IO.readObject(
+        return (TreeMap<Short, Short>) env.ge.io.readObject(
                 getSubsetLookupFromFile(wave));
     }
 
@@ -168,7 +167,7 @@ public class ELSA_Handler extends ELSA_Object {
     }
 
     protected String getStringToWaveDotDat(int wave) {
-        return ELSA_Strings.s_To + ELSA_Strings.s_W + wave + ELSA_Files.DOT_DAT;
+        return ELSA_Strings.s_To + ELSA_Strings.s_W + wave + env.files.DOT_DAT;
     }
 
     public void cacheSubsetCollection(short cID, byte wave, Object o) {
@@ -181,7 +180,7 @@ public class ELSA_Handler extends ELSA_Object {
 
     public File getSubsetCollectionFile(short cID, byte wave) {
         return new File(files.getGeneratedELSASubsetsDir(),
-                getString1(wave, cID) + ELSA_Files.DOT_DAT);
+                getString1(wave, cID) + env.files.DOT_DAT);
     }
 
     /**
@@ -215,7 +214,7 @@ public class ELSA_Handler extends ELSA_Object {
         r = null;
 //        File f = new File(files.getOutputDataDir(), name + "GORSubsetsAndLookups.dat");
 //        if (f.exists()) {
-//            r = (Object[]) Generic_IO.readObject(f);
+//            r = (Object[]) env.ge.io.readObject(f);
 //        } else {
 //            r = new Object[2];
 //            HashMap<Byte, HashSet<Short>>[] r0 = new HashMap[ELSA_Data.NWAVES];
@@ -361,7 +360,7 @@ public class ELSA_Handler extends ELSA_Object {
 //                });
 //                data.clearCollection(cID);
 //            });
-//            Generic_IO.writeObject(r, f);
+//            env.ge.io.writeObject(r, f);
 //        }
         return r;
     }

@@ -19,7 +19,6 @@ import java.io.File;
 import java.util.HashMap;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Object;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Strings;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.io.ELSA_Files;
 
@@ -120,7 +119,7 @@ public class ELSA_Data extends ELSA_Object {
     public File getELSASubsetCollectionFile(short cID) {
         return new File(env.files.getGeneratedELSASubsetsDir(),
                 ELSA_Strings.s_ELSA + ELSA_Strings.symbol_underscore + cID
-                + ELSA_Files.DOT_DAT);
+                + env.files.DOT_DAT);
     }
     
     /**
@@ -145,7 +144,7 @@ public class ELSA_Data extends ELSA_Object {
     protected Object load(File f) {
         String m = "load object from " + f.toString();
         env.logStartTag(m);
-        Object r = Generic_IO.readObject(f);
+        Object r = env.ge.io.readObject(f);
         env.logEndTag(m);
         return r;
     }
@@ -159,7 +158,7 @@ public class ELSA_Data extends ELSA_Object {
     protected void cache(File f, Object o) {
         String m = "cache object to " + f.toString();
         env.logStartTag(m);
-        Generic_IO.writeObject(o, f);
+        env.ge.io.writeObject(o, f);
         env.logEndTag(m);
     }
 

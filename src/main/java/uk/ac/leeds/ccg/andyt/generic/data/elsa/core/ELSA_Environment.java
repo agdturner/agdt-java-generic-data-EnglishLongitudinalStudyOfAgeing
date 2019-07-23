@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 //import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.data.ELSA_Data;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.data.ELSA_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.io.ELSA_Files;
@@ -47,7 +46,7 @@ public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
     }
 
     public ELSA_Environment(Generic_Environment ge) {
-        this(ge, ge.getFiles().getDataDir());
+        this(ge, ge.files.getDataDir());
     }
 
     public ELSA_Environment(Generic_Environment ge, File dataDir) {
@@ -56,7 +55,7 @@ public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
         files = new ELSA_Files(dataDir);
         File f = files.getEnvDataFile();
         if (f.exists()) {
-            data = (ELSA_Data) Generic_IO.readObject(f);
+            data = (ELSA_Data) ge.io.readObject(f);
             initData();
             //data.env = this;
         } else {
@@ -159,7 +158,7 @@ public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
     public void cacheData() {
         String m = "cacheData";
         logStartTag(m);
-        Generic_IO.writeObject(data, files.getEnvDataFile());
+        ge.io.writeObject(data, files.getEnvDataFile());
         logEndTag(m);
     }
 

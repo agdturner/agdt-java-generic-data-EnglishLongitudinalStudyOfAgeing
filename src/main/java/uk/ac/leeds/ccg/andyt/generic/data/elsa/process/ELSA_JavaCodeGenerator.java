@@ -223,7 +223,7 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
         Iterator<File> itef = fs.iterator();
         while (itef.hasNext()) {
             File f = itef.next();
-            BufferedReader br = Generic_IO.getBufferedReader(f);
+            BufferedReader br = env.ge.io.getBufferedReader(f);
             String line = br.lines().findFirst().get();
             String[] fields = parseHeader(line, wave);
             int n = fields.length;
@@ -698,7 +698,7 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
                 v0m = v0ms[w];
                 className = prepend + "Wave" + wave + "_Record";
                 fout = new File(outdir, className + ".java");
-                pw = Generic_IO.getPrintWriter(fout, false);
+                pw = env.ge.io.getPrintWriter(fout, false);
                 writeHeaderPackageAndImports(pw, packageName, "");
                 extendedClassName = prepend + "Waves1To8_Record";
                 printClassDeclarationSerialVersionUID(pw, packageName,
@@ -720,7 +720,7 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
                 pw = null;
                 className = prepend + "Waves1To8_Record";
                 fout = new File(outdir, className + ".java");
-                pw = Generic_IO.getPrintWriter(fout, false);
+                pw = env.ge.io.getPrintWriter(fout, false);
                 writeHeaderPackageAndImports(pw, packageName,
                         "java.io.Serializable");
                 printClassDeclarationSerialVersionUID(pw, packageName,
