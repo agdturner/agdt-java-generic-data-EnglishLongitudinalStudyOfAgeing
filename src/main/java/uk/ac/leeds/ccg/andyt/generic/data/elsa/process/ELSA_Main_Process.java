@@ -15,6 +15,9 @@
  */
 package uk.ac.leeds.ccg.andyt.generic.data.elsa.process;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.io.ELSA_Files;
@@ -57,12 +60,16 @@ public class ELSA_Main_Process extends ELSA_Object {
     }
 
     public static void main(String[] args) {
-        ELSA_Environment env = new ELSA_Environment(new Generic_Environment());
-        ELSA_Main_Process p = new ELSA_Main_Process(env);
-        // Main switches
-        //p.doJavaCodeGeneration = true;
-        
-        p.run();
+        try {
+            ELSA_Environment env = new ELSA_Environment(new Generic_Environment());
+            ELSA_Main_Process p = new ELSA_Main_Process(env);
+            // Main switches
+            //p.doJavaCodeGeneration = true;
+
+            p.run();
+        } catch (IOException ex) {
+           ex.printStackTrace(System.err);
+        }
     }
 
     public void run() {

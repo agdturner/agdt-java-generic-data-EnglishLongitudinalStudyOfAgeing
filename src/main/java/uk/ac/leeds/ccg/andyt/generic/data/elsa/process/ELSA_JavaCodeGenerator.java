@@ -17,6 +17,7 @@ package uk.ac.leeds.ccg.andyt.generic.data.elsa.process;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,11 +83,15 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
     }
 
     public static void main(String[] args) {
-        ELSA_JavaCodeGenerator p = new ELSA_JavaCodeGenerator(
-                new ELSA_Environment(new Generic_Environment()));
-        int nwaves = ELSA_Data.NWAVES;
-        Object[] fieldTypes = p.getFieldTypes(nwaves);
-        p.run(fieldTypes, nwaves);
+        try {
+            ELSA_JavaCodeGenerator p = new ELSA_JavaCodeGenerator(
+                    new ELSA_Environment(new Generic_Environment()));
+            int nwaves = ELSA_Data.NWAVES;
+            Object[] fieldTypes = p.getFieldTypes(nwaves);
+            p.run(fieldTypes, nwaves);
+        } catch (IOException ex) {
+            ex.printStackTrace(System.err);
+        }
     }
 
     /**
@@ -656,8 +661,8 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
         HashMap<String, Integer> fieldTypes;
         fieldTypes = (HashMap<String, Integer>) types[0];
         String[][] headers = (String[][]) types[1];
-        HashMap<String, Byte>[] v0ms  = (HashMap<String, Byte>[]) types[2];
-        HashMap<String, Byte>[] v1ms  = (HashMap<String, Byte>[]) types[3];
+        HashMap<String, Byte>[] v0ms = (HashMap<String, Byte>[]) types[2];
+        HashMap<String, Byte>[] v1ms = (HashMap<String, Byte>[]) types[3];
 
         TreeSet<String>[] fields = getFields(headers);
 
@@ -665,7 +670,7 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
         v0m0 = setCommonBooleanMaps(v0ms, v1ms, fields, fieldTypes);
 
         File outdir;
-        outdir = new File(files.getDataDir(), "..");
+        outdir = new File(files.getDir(), "..");
         outdir = new File(outdir, ELSA_Strings.s_src);
         outdir = new File(outdir, ELSA_Strings.s_main);
         outdir = new File(outdir, ELSA_Strings.s_java);
@@ -1097,8 +1102,8 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
     }
 
     /**
-     * Returns all the values common to sets and removes all
-     * these common fields from sets.
+     * Returns all the values common to sets and removes all these common fields
+     * from sets.
      *
      * @param sets
      * @return

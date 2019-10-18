@@ -16,6 +16,7 @@
 package uk.ac.leeds.ccg.andyt.generic.data.elsa.core;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 //import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
@@ -41,15 +42,15 @@ public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
      */
     public final int logID;
 
-    public ELSA_Environment(File dataDir) {
+    public ELSA_Environment(File dataDir)throws IOException  {
         this(new Generic_Environment(dataDir), dataDir);
     }
 
-    public ELSA_Environment(Generic_Environment ge) {
-        this(ge, ge.files.getDataDir());
+    public ELSA_Environment(Generic_Environment ge) throws IOException {
+        this(ge, ge.files.getDir());
     }
 
-    public ELSA_Environment(Generic_Environment ge, File dataDir) {
+    public ELSA_Environment(Generic_Environment ge, File dataDir) throws IOException {
         //Memory_Threshold = 3000000000L;
         this.ge = ge;
         files = new ELSA_Files(dataDir);

@@ -34,14 +34,14 @@ public class ELSA_Files extends Data_Files {
     }
 
     public File getInputELSADir() {
-        File r = new File(getInputDataDir(), ELSA_Strings.s_ELSA);
+        File r = new File(getInputDir(), ELSA_Strings.s_ELSA);
         r = new File(r, "UKDA-5050-tab");
         r = new File(r, "tab");
         return r;
     }
 
     public File getGeneratedELSADir() {
-        File r  = new File(getGeneratedDataDir(), ELSA_Strings.s_ELSA);
+        File r  = new File(getGeneratedDir(), ELSA_Strings.s_ELSA);
         r.mkdirs();
         return r;
     }
