@@ -16,6 +16,7 @@
 package uk.ac.leeds.ccg.andyt.generic.data.elsa.io;
 
 import java.io.File;
+import java.io.IOException;
 import uk.ac.leeds.ccg.andyt.data.io.Data_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Strings;
 
@@ -29,7 +30,7 @@ public class ELSA_Files extends Data_Files {
      *
      * @param dataDir
      */
-    public ELSA_Files(File dataDir) {
+    public ELSA_Files(File dataDir) throws IOException {
         super(dataDir);
     }
 
