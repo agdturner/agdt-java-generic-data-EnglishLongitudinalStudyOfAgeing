@@ -77823,7 +77823,17 @@ return YNOWH;
 }
 
 public ELSA_Wave2_Record(String line) {
-s = line.split("\t");
+init_0_999(line);
+init_1000_1999(line);
+init_2000_2999(line);
+init_3000_3999(line);
+init_4000_4999(line);
+init_5000_5999(line);
+init_6000_6999(line);
+init_7000_7999(line);
+init_8000_8444(line);
+}
+public void init_0_999(String line) {
 initIDAUNIQ(s[0]);
 initW2SEC(s[1]);
 initW2SIC(s[2]);
@@ -78824,6 +78834,8 @@ initWPLKCH5(s[996]);
 initWPLKCH6(s[997]);
 initWPLKCM1(s[998]);
 initWPLKCM2(s[999]);
+}
+public void init_1000_1999(String line) {
 initWPLKCM3(s[1000]);
 initWPLKCM4(s[1001]);
 initWPLKCM5(s[1002]);
@@ -79824,6 +79836,8 @@ initWPLCOY4(s[1996]);
 initWPLCOM4(s[1997]);
 initWPMCON4(s[1998]);
 initWPAC4(s[1999]);
+}
+public void init_2000_2999(String line) {
 initWPFSC4(s[2000]);
 initWPNIRR4(s[2001]);
 initWPLASY4(s[2002]);
@@ -80824,6 +80838,8 @@ initIAA6MU(s[2996]);
 initIAA6ME(s[2997]);
 initIAA6MR(s[2998]);
 initIAA6YL(s[2999]);
+}
+public void init_3000_3999(String line) {
 initIAA6YU(s[3000]);
 initIAA6YE(s[3001]);
 initIAA6YR(s[3002]);
@@ -81824,6 +81840,8 @@ initIAA44OL(s[3996]);
 initIAA44OU(s[3997]);
 initIAA44OE(s[3998]);
 initIAA44OR(s[3999]);
+}
+public void init_4000_4999(String line) {
 initIALY44(s[4000]);
 initIALM44(s[4001]);
 initIAT45(s[4002]);
@@ -82824,6 +82842,8 @@ initIAPA2OE(s[4996]);
 initIAPA2OR(s[4997]);
 initIARGYRP(s[4998]);
 initIARGMWP(s[4999]);
+}
+public void init_5000_5999(String line) {
 initIARMWPA(s[5000]);
 initIAMRP(s[5001]);
 initIAPK1(s[5002]);
@@ -83824,6 +83844,8 @@ initHOEOWR(s[5996]);
 initHOEOS(s[5997]);
 initHOEOSL(s[5998]);
 initHOEOSU(s[5999]);
+}
+public void init_6000_6999(String line) {
 initHOEOSE(s[6000]);
 initHOEOSR(s[6001]);
 initHOFCW(s[6002]);
@@ -84824,6 +84846,8 @@ initOJ_BU_F(s[6996]);
 initOJ_BU_T(s[6997]);
 initOJ_BU_O(s[6998]);
 initOJ_R_I(s[6999]);
+}
+public void init_7000_7999(String line) {
 initOJ_R_F(s[7000]);
 initOJ_R_T(s[7001]);
 initOJ_R_O(s[7002]);
@@ -85824,6 +85848,8 @@ initHOVE2E(s[7996]);
 initHOVE2R(s[7997]);
 initHOMSAM3(s[7998]);
 initHOMEXT3(s[7999]);
+}
+public void init_8000_8444(String line) {
 initHOMXA3(s[8000]);
 initHOMXA3L(s[8001]);
 initHOMXA3U(s[8002]);

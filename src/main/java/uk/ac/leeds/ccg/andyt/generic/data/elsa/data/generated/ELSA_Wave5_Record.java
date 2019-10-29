@@ -58457,7 +58457,16 @@ return WTC_R_T;
 }
 
 public ELSA_Wave5_Record(String line) {
-s = line.split("\t");
+init_0_999(line);
+init_1000_1999(line);
+init_2000_2999(line);
+init_3000_3999(line);
+init_4000_4999(line);
+init_5000_5999(line);
+init_6000_6999(line);
+init_7000_7046(line);
+}
+public void init_0_999(String line) {
 initIDAUNIQ(s[0]);
 initHEADLDR(s[1]);
 initHEADLWA(s[2]);
@@ -59458,6 +59467,8 @@ initHEZICOV(s[996]);
 initHEMWCH(s[997]);
 initHEEWCH(s[998]);
 initHEMWNHS(s[999]);
+}
+public void init_1000_1999(String line) {
 initHEMWSS(s[1000]);
 initHEMWSE(s[1001]);
 initHEMWOT(s[1002]);
@@ -60458,6 +60469,8 @@ initIAA10WE(s[1996]);
 initIAA10WR(s[1997]);
 initIAA10FL(s[1998]);
 initIAA10FU(s[1999]);
+}
+public void init_2000_2999(String line) {
 initIAA10FE(s[2000]);
 initIAA10FR(s[2001]);
 initIAA10ML(s[2002]);
@@ -61458,6 +61471,8 @@ initIARG4WE(s[2996]);
 initIARG4WR(s[2997]);
 initIARG4FL(s[2998]);
 initIARG4FU(s[2999]);
+}
+public void init_3000_3999(String line) {
 initIARG4FE(s[3000]);
 initIARG4FR(s[3001]);
 initIARG4ML(s[3002]);
@@ -62458,6 +62473,8 @@ initHOCTN(s[3996]);
 initHOCTB(s[3997]);
 initHOCTBP(s[3998]);
 initHODISC(s[3999]);
+}
+public void init_4000_4999(String line) {
 initHODIFF(s[4000]);
 initHODIFFT(s[4001]);
 initHODOC(s[4002]);
@@ -63458,6 +63475,8 @@ initHOVYR13(s[4996]);
 initHOVLR13(s[4997]);
 initHOVER13(s[4998]);
 initHOVNR13(s[4999]);
+}
+public void init_5000_5999(String line) {
 initHOVNO13(s[5000]);
 initHOVW1301(s[5001]);
 initHOVW1302(s[5002]);
@@ -64458,6 +64477,8 @@ initPEP_BU_F(s[5996]);
 initPEP_BU_T(s[5997]);
 initPEP_BU_O(s[5998]);
 initPEPI_BU_I(s[5999]);
+}
+public void init_6000_6999(String line) {
 initPEPI_BU_F(s[6000]);
 initPEPI_BU_T(s[6001]);
 initPEPI_BU_O(s[6002]);
@@ -65458,6 +65479,8 @@ initWPIFSNO(s[6996]);
 initWPIFSEM(s[6997]);
 initWPIFSRE(s[6998]);
 initWPIFSCO(s[6999]);
+}
+public void init_7000_7046(String line) {
 initWPIFSPR(s[7000]);
 initWPIFSAC(s[7001]);
 initWPIFSFA(s[7002]);

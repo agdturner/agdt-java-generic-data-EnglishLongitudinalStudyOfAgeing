@@ -17,6 +17,7 @@ package uk.ac.leeds.ccg.andyt.generic.data.elsa.process;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Environment;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.io.ELSA_Files;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.core.ELSA_Object;
@@ -104,8 +104,9 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
      * if field is to be represented by a int; 3 if field is to be represented
      * by a short; 4 if field is to be represented by a byte; 5 if field is to
      * be represented by a boolean.
+     * @throws java.io.FileNotFoundException
      */
-    protected Object[] getFieldTypes(int nwaves) {
+    protected Object[] getFieldTypes(int nwaves) throws FileNotFoundException {
         Object[] r = new Object[4];
         File indir = files.getInputELSADir();
         File generateddir = files.getGeneratedELSADir();
@@ -207,8 +208,9 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
      * @param wave
      * @param indir
      * @return
+     * @throws java.io.FileNotFoundException
      */
-    public Object[] loadTest(int wave, File indir) {
+    public Object[] loadTest(int wave, File indir) throws FileNotFoundException {
         String m = "loadTest(wave " + wave + ", indir "
                 + indir.toString() + ")";
         env.logStartTag(m);
@@ -657,7 +659,7 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
         }
     }
 
-    public void run(Object[] types, int nwaves) {
+    public void run(Object[] types, int nwaves) throws IOException {
         HashMap<String, Integer> fieldTypes;
         fieldTypes = (HashMap<String, Integer>) types[0];
         String[][] headers = (String[][]) types[1];
@@ -711,13 +713,48 @@ public class ELSA_JavaCodeGenerator extends ELSA_Object {
                 // Print Field Declarations Inits And Getters
                 printFieldDeclarationsInitsAndGetters(pw, fields[w], fieldTypes,
                         v0m);
-                // Constructor
-                pw.println("public " + className + "(String line) {");
-                pw.println("s = line.split(\"\\t\");");
-                for (int j = 0; j < headers[w].length; j++) {
-                    pw.println("init" + headers[w][j] + "(s[" + j + "]);");
+                /**
+                 * Constructor If there are a very large number of variables,
+                 * this can result in an uncompilable method as the compiled
+                 * bytcode might exceed 64kb of byteCode which is a limit for
+                 * Java. See:
+                 * https://stackoverflow.com/questions/2407912/code-too-large-compilation-error-in-java
+                 *
+                 * To overcome this, let us split every 1000 assignments into
+                 * separate methods.
+                 *
+                 */
+                int nPerInit = 1000;
+                if (headers[w].length < nPerInit) {
+                    pw.println("public " + className + "(String line) {");
+                    pw.println("s = line.split(\"\\t\");");
+                    for (int j = 0; j < headers[w].length; j++) {
+                        pw.println("init" + headers[w][j] + "(s[" + j + "]);");
+                    }
+                    pw.println("}");
+                } else {
+                    int start = 0;
+                    int end = nPerInit - 1;
+                    int nInits = (int) Math.ceil(headers[w].length / (double) nPerInit);
+                    pw.println("public " + className + "(String line) {");
+                    for (int i = 0; i < nInits; i++) {
+                        pw.println("init_" + start + "_" + end + "(line);");
+                        start = end + 1;
+                        end = Math.min(end + nPerInit, headers[w].length - 1);
+                    }
+                    pw.println("}");
+                    start = 0;
+                    end = nPerInit - 1;
+                    for (int i = 0; i < nInits; i++) {
+                        pw.println("public void init_" + start + "_" + end + "(String line) {");
+                        for (int j = start; j <= end; j ++) {
+                            pw.println("init" + headers[w][j] + "(s[" + j + "]);");
+                        }
+                        start = end + 1;
+                        end = Math.min(end + nPerInit, headers[w].length - 1);
+                        pw.println("}");
+                    }
                 }
-                pw.println("}");
                 pw.println("}");
                 pw.close();
             } else {

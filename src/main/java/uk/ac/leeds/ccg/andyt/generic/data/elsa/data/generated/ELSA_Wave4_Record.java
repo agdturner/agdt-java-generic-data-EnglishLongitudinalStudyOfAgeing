@@ -90432,7 +90432,18 @@ return YNOWH;
 }
 
 public ELSA_Wave4_Record(String line) {
-s = line.split("\t");
+init_0_999(line);
+init_1000_1999(line);
+init_2000_2999(line);
+init_3000_3999(line);
+init_4000_4999(line);
+init_5000_5999(line);
+init_6000_6999(line);
+init_7000_7999(line);
+init_8000_8999(line);
+init_9000_9467(line);
+}
+public void init_0_999(String line) {
 initIDAUNIQ(s[0]);
 initIDAHH(s[1]);
 initPERID(s[2]);
@@ -91433,6 +91444,8 @@ initHEMWM95(s[996]);
 initHEMWCOV(s[997]);
 initHEEWNHS(s[998]);
 initHEEWSS(s[999]);
+}
+public void init_1000_1999(String line) {
 initHEEWSE(s[1000]);
 initHEEWOT(s[1001]);
 initHEEWMNHS(s[1002]);
@@ -92433,6 +92446,8 @@ initWPRCON2(s[1996]);
 initWPRC2MO(s[1997]);
 initWPRC2RE(s[1998]);
 initWPRC2ST(s[1999]);
+}
+public void init_2000_2999(String line) {
 initWPRC2RI(s[2000]);
 initWPRC2PU(s[2001]);
 initWPRC295(s[2002]);
@@ -93433,6 +93448,8 @@ initIAPAMME(s[2996]);
 initIAPAMMR(s[2997]);
 initIAPAMYL(s[2998]);
 initIAPAMYU(s[2999]);
+}
+public void init_3000_3999(String line) {
 initIAPAMYE(s[3000]);
 initIAPAMYR(s[3001]);
 initIAPAMOL(s[3002]);
@@ -94433,6 +94450,8 @@ initIAA35FU(s[3996]);
 initIAA35FE(s[3997]);
 initIAA35FR(s[3998]);
 initIAA35ML(s[3999]);
+}
+public void init_4000_4999(String line) {
 initIAA35MU(s[4000]);
 initIAA35ME(s[4001]);
 initIAA35MR(s[4002]);
@@ -95433,6 +95452,8 @@ initIAA71MR(s[4996]);
 initIAA71YL(s[4997]);
 initIAA71YU(s[4998]);
 initIAA71YE(s[4999]);
+}
+public void init_5000_5999(String line) {
 initIAA71YR(s[5000]);
 initIAA71OL(s[5001]);
 initIAA71OU(s[5002]);
@@ -96433,6 +96454,8 @@ initHOVMLL2N(s[5996]);
 initHOVMLU2N(s[5997]);
 initHOVMLE2N(s[5998]);
 initHOVMLR2N(s[5999]);
+}
+public void init_6000_6999(String line) {
 initHOVE2N(s[6000]);
 initHOVEL2N(s[6001]);
 initHOVEU2N(s[6002]);
@@ -97433,6 +97456,8 @@ initHOVNO4(s[6996]);
 initHOVW401(s[6997]);
 initHOVW402(s[6998]);
 initHOVW403(s[6999]);
+}
+public void init_7000_7999(String line) {
 initHOVW404(s[7000]);
 initHOVW405(s[7001]);
 initHOVW406(s[7002]);
@@ -98433,6 +98458,8 @@ initSSP_P_I(s[7996]);
 initSSP_P_F(s[7997]);
 initSSP_P_T(s[7998]);
 initSSP_P_O(s[7999]);
+}
+public void init_8000_8999(String line) {
 initATTALL_R_I(s[8000]);
 initATTALL_R_F(s[8001]);
 initATTALL_R_T(s[8002]);
@@ -99433,6 +99460,8 @@ initMORTPAYT(s[8996]);
 initMORTPAYXL(s[8997]);
 initMORTPAYXU(s[8998]);
 initMORTPAYXT(s[8999]);
+}
+public void init_9000_9467(String line) {
 initMORTINCPP(s[9000]);
 initMORTINCBI(s[9001]);
 initMORTINCPI(s[9002]);

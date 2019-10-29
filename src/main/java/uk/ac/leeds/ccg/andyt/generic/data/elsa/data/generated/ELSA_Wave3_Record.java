@@ -91268,7 +91268,18 @@ return YRBIRTH;
 }
 
 public ELSA_Wave3_Record(String line) {
-s = line.split("\t");
+init_0_999(line);
+init_1000_1999(line);
+init_2000_2999(line);
+init_3000_3999(line);
+init_4000_4999(line);
+init_5000_5999(line);
+init_6000_6999(line);
+init_7000_7999(line);
+init_8000_8999(line);
+init_9000_9435(line);
+}
+public void init_0_999(String line) {
 initIDAUNIQ(s[0]);
 initIDAHH(s[1]);
 initPERID(s[2]);
@@ -92269,6 +92280,8 @@ initWPWYWMSU(s[996]);
 initWPWYWMHH(s[997]);
 initWPWYWMCH(s[998]);
 initWPWYWMFI(s[999]);
+}
+public void init_1000_1999(String line) {
 initWPWYWMHE(s[1000]);
 initWPWYWM85(s[1001]);
 initWPWYWM86(s[1002]);
@@ -93269,6 +93282,8 @@ initIAA15YL(s[1996]);
 initIAA15YU(s[1997]);
 initIAA15YE(s[1998]);
 initIAA15YR(s[1999]);
+}
+public void init_2000_2999(String line) {
 initIAA15OL(s[2000]);
 initIAA15OU(s[2001]);
 initIAA15OE(s[2002]);
@@ -94269,6 +94284,8 @@ initIAA52WR(s[2996]);
 initIAA52FL(s[2997]);
 initIAA52FU(s[2998]);
 initIAA52FE(s[2999]);
+}
+public void init_3000_3999(String line) {
 initIAA52FR(s[3000]);
 initIAA52ML(s[3001]);
 initIAA52MU(s[3002]);
@@ -95269,6 +95286,8 @@ initIAFCON(s[3996]);
 initIAORGF(s[3997]);
 initIAFIND(s[3998]);
 initIAPYW(s[3999]);
+}
+public void init_4000_4999(String line) {
 initIAERN(s[4000]);
 initIAEARL(s[4001]);
 initIAEARU(s[4002]);
@@ -96269,6 +96288,8 @@ initHOFWSE(s[4996]);
 initHOFWSR(s[4997]);
 initHOFUEMGA(s[4998]);
 initHOFUEMEL(s[4999]);
+}
+public void init_5000_5999(String line) {
 initHOFUEMCO(s[5000]);
 initHOFUEMPA(s[5001]);
 initHOFUEMOI(s[5002]);
@@ -97269,6 +97290,8 @@ initALLADCH(s[5996]);
 initALLFSCH(s[5997]);
 initALLSPCH(s[5998]);
 initMOTHER(s[5999]);
+}
+public void init_6000_6999(String line) {
 initMTHAGD(s[6000]);
 initFATHER(s[6001]);
 initFTHAGD(s[6002]);
@@ -98269,6 +98292,8 @@ initHEMOBSI(s[6996]);
 initHEMOBCH(s[6997]);
 initHEMOBCS(s[6998]);
 initHEMOBCL(s[6999]);
+}
+public void init_7000_7999(String line) {
 initHEMOBST(s[7000]);
 initHEMOBRE(s[7001]);
 initHEMOBPU(s[7002]);
@@ -99269,6 +99294,8 @@ initRADIV(s[7996]);
 initRADIY(s[7997]);
 initRAMOT(s[7998]);
 initRAMOA(s[7999]);
+}
+public void init_8000_8999(String line) {
 initRAMOY(s[8000]);
 initRAMOYC(s[8001]);
 initRAPAR(s[8002]);
@@ -100269,6 +100296,8 @@ initRWST95T(s[8996]);
 initRWSFF191(s[8997]);
 initRWSFF192(s[8998]);
 initRWSFF193(s[8999]);
+}
+public void init_9000_9435(String line) {
 initRWSFF194(s[9000]);
 initRWSFF195(s[9001]);
 initRWSFF196(s[9002]);
