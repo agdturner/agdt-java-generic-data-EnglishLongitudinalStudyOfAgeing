@@ -17,7 +17,6 @@ package uk.ac.leeds.ccg.andyt.generic.data.elsa.core;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Serializable;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 //import uk.ac.leeds.ccg.andyt.data.postcode.Generic_UKPostcode_Handler;
 import uk.ac.leeds.ccg.andyt.generic.data.elsa.data.ELSA_Data;
@@ -28,8 +27,7 @@ import uk.ac.leeds.ccg.andyt.generic.data.elsa.io.ELSA_Files;
  *
  * @author geoagdt
  */
-public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
-        implements Serializable {
+public class ELSA_Environment extends ELSA_MemoryManager {
 
     public final transient Generic_Environment ge;
     public final transient ELSA_Files files;
@@ -83,7 +81,7 @@ public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
 //            if (clear == 0) {
 //                return false;
 //            }
-            if (!swapDataAny()) {
+            if (!cacheDataAny()) {
                 return false;
             }
         }
@@ -91,21 +89,21 @@ public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
     }
 
     /**
-     * Attempts to swap some of {@link #data}.
+     * Attempts to cache some of {@link #data}.
      *
      * @param hoome handleOutOfMemoryError
-     * @return {@code true} iff some data was successfully swapped.
+     * @return {@code true} iff some data was successfully cacheped.
      */
     @Override
-    public boolean swapDataAny(boolean hoome) {
+    public boolean cacheDataAny(boolean hoome) {
         try {
-            boolean r = swapDataAny();
+            boolean r = cacheDataAny();
             checkAndMaybeFreeMemory();
             return r;
         } catch (OutOfMemoryError e) {
             if (hoome) {
                 clearMemoryReserve();
-                boolean r = swapDataAny(HOOMEF);
+                boolean r = cacheDataAny(HOOMEF);
                 initMemoryReserve();
                 return r;
             } else {
@@ -115,12 +113,12 @@ public class ELSA_Environment extends ELSA_OutOfMemoryErrorHandler
     }
 
     /**
-     * Attempts to swap some of {@link #data}.
+     * Attempts to cache some of {@link #data}.
      *
-     * @return {@code true} iff some data was successfully swapped.
+     * @return {@code true} iff some data was successfully cacheped.
      */
     @Override
-    public boolean swapDataAny() {
+    public boolean cacheDataAny() {
         boolean r = clearSomeData();
         if (r) {
             return r;
